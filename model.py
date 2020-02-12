@@ -18,6 +18,7 @@ def SDPN(summary=True):
         Model of SDPN
 
     """
+    # input is 4 coords from image plane
     input_coords = Input(shape=(4,))
     input_crop = Input(shape=(3, 224, 224))
 
@@ -51,6 +52,7 @@ def SDPN(summary=True):
     h = Dense(128, activation='relu')(h)
     h = Dropout(p=0.25)(h)
 
+    # output is 4 coords in the 3D coords.
     output_coords = Dense(4, activation='tanh')(h)
 
     model = Model(input=[input_coords, input_crop], output=output_coords)
